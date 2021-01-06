@@ -10,4 +10,12 @@ public class Node {
   private String getData() {
     return data;
   }
+
+  private Node getNext() {
+    return next;
+  }
+
+  private Node getPrev() {
+    return prev;
+  }
 }
