@@ -3,13 +3,32 @@ public class MyLinkedList{
   private Node start, end;
 
   public MyLinkedList() {
-
+    size = size;
+    start = start;
+    end = end;
   }
 
-  public int size();
-  public boolean add(String value);
-  public boolean add(int index, String value);
-  public String get(int index);
-  public String set(int index, String value);
-  public String toString();
+  public int size() {
+    return size;
+  }
+
+  public boolean add(String value) {
+    return true;
+  }
+
+  public void add(int index, String value) {
+    return "test";
+  }
+
+  public String get(int index) {
+    return "test";
+  }
+
+  public String set(int index, String value) {
+    return "test";
+  }
+
+  public String toString() {
+    return "test";
+  }
 }
