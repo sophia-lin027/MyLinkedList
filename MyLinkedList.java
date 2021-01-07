@@ -53,16 +53,27 @@ public class MyLinkedList{
     }
 
     Node current = start;
+    int counter = 0;
+    while (counter < index) {
+      current = current.getNext();
+      counter++;
+    }
+    return current.getData();
+  }
+
+  public String set(int index, String value) {
+    if (index < 0.0 || index > size()) {
+      throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
+    }
+
+    Node current = start;
+    Node placeholder = new Node(value);
     if (current != null) {
       for (int i = 0; i < index && current.getNext() != null; i++) {
         current = current.getNext();
       }
     }
     return current.getData();
-  }
-
-  public String set(int index, String value) {
-    return "test";
   }
 
   public String toString() {
