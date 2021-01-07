@@ -7,27 +7,27 @@ public class Node {
     String data = value;
   }
 
-  private String getData() {
+  public String getData() {
     return data;
   }
 
-  private Node getNext() {
+  public Node getNext() {
     return next;
   }
 
-  private Node getPrev() {
+  public Node getPrev() {
     return prev;
   }
 
-  private void setData(String new_value) {
+  public void setData(String new_value) {
     data = new_value;
   }
 
-  private void setNext(Node new_value) {
+  public void setNext(Node new_value) {
     next = new_value;
   }
 
-  private void setPrev(Node new_value) {
+  public void setPrev(Node new_value) {
     prev = new_value;
   }
 }
