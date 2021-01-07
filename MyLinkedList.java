@@ -3,9 +3,9 @@ public class MyLinkedList{
   private Node start, end;
 
   public MyLinkedList() {
-    size = 0;
-    start = new Node(null);
-    end = new Node(null);
+    this.size = 0;
+    this.start = null;
+    this.end = null;
   }
 
   public int size() {
@@ -13,19 +13,14 @@ public class MyLinkedList{
   }
 
   public boolean add(String value) {
-    if (start == null) {
-      start = new Node(value);
-      return true;
+    Node new_value = new Node(value);
+    if (size == 0) {
+      this.start = new_value;
+      this.end = new_value;
     }
 
-    Node new_node = new Node(value);
-    new_node.setNext(null);
-    Node current = start;
-
-    while (current.getNext() != null) {
-      current = current.getNext();
-    }
-    current.setNext(new_node);
+    (this.end).setNext(new_value);
+    this.end = new_value;
     size++;
     return true;
   }
@@ -48,11 +43,11 @@ public class MyLinkedList{
   }
 
   public String get(int index) {
-    if (index < 0.0 || index > size()) {
+    if (index < 0.0 || index > this.size()) {
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
 
-    Node current = start;
+    Node current = this.start;
     int counter = 0;
     while (counter < index) {
       current = current.getNext();
