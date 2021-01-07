@@ -4,7 +4,9 @@ public class Node {
   private Node prev;
 
   public Node(String value) {
-    String data = value;
+    data = value;
+    next = null;
+    prev = null;
   }
 
   public String getData() {
