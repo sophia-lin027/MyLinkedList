@@ -34,6 +34,16 @@ public class MyLinkedList{
     if (index < 0.0 || index > size()) {
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
+ 
+    Node current = start;
+    Node placeholder = new Node(value);
+    if (current != null) {
+      for (int i = 0; i < index || current.getNext() != null; i++) {
+        current = current.getNext();
+      }
+    }
+    placeholder.setNext(current.getNext());
+    current.setNext(placeholder);
   }
 
   public String get(int index) {
