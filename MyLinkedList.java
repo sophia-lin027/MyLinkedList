@@ -61,14 +61,14 @@ public class MyLinkedList{
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
 
-    Node current = start;
-    Node placeholder = new Node(value);
-    if (current != null) {
-      for (int i = 0; i < index && current.getNext() != null; i++) {
-        current = current.getNext();
-      }
+    Node current = this.start;
+    int counter = 0;
+
+    while (counter < index) {
+      current = current.getNext();
+      counter++;
     }
-    return current.getData();
+    return current.setData(value);
   }
 
   public String toString() {
