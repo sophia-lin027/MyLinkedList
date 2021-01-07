@@ -4,32 +4,35 @@ public class Node {
   private Node prev;
 
   public Node(String value) {
-    data = value;
-    next = null;
-    prev = null;
+    this.data = value;
+    this.next = null;
+    this.prev = null;
   }
 
   public String getData() {
-    return data;
+    return this.data;
   }
 
   public Node getNext() {
-    return next;
+    return this.next;
   }
 
   public Node getPrev() {
-    return prev;
+    return this.prev;
   }
 
-  public void setData(String new_value) {
-    data = new_value;
+  public String setData(String new_value) {
+    this.data = new_value;
+    return new_value;
   }
 
-  public void setNext(Node new_value) {
-    next = new_value;
+  public boolean setNext(Node new_value) {
+    this.next = new_value;
+    return true;
   }
 
-  public void setPrev(Node new_value) {
-    prev = new_value;
+  public boolean setPrev(Node new_value) {
+    this.prev = new_value;
+    return true;
   }
 }
