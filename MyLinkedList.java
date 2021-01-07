@@ -13,11 +13,21 @@ public class MyLinkedList{
   }
 
   public boolean add(String value) {
+    Node x = new Node(value);
+    if (size() == 1) {
+      x = start;
+      x = end;
+    }
+    else {
+      x.setPrev(end);
+      end.setNext(x);
+      end = x;
+    }
+    size++;
     return true;
   }
 
   public void add(int index, String value) {
-    return "test";
   }
 
   public String get(int index) {
