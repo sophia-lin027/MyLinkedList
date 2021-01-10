@@ -27,19 +27,37 @@ public class MyLinkedList{
   }
 
   public void add(int index, String value) {
-    if (index < 0.0 || index > size()) {
+    if (index < 0 || index > size) {
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
 
-    Node current = this.start;
-    Node placeholder = new Node(value);
-    if (current != null) {
-      for (int i = 0; i < index && current.getNext() != null; i++) {
-        current = current.getNext();
-      }
+    Node new_node = new Node(value);
+    if (size == 0) {
+      start = new_node;
+      end = new_node;
     }
-    placeholder.setNext(current.getNext());
-    current.setNext(placeholder);
+
+    else if (index == 0){
+      start.setPrev(new_node);
+      new_node.setNext(start);
+      start = new_node;
+    }
+
+    else if (size == index) {
+      end.setNext(new_node);
+      new_node.setPrev(end);
+      end = new_node;
+    }
+
+    else {
+      Node new_prev = move(index - 1);
+      Node new_next = move(index);
+      new_node.setPrev(new_prev);
+      new_node.setNext(new_next);
+      new_prev.setNext(new_node);
+      new_next.setPrev(new_node);
+    }
+
     size++;
   }
 
@@ -73,11 +91,11 @@ public class MyLinkedList{
   }
 
   private Node move(int index) {
-    if (index < 0.0 || index >= size()) {
+    if (index < 0 || index >= size()) {
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
 
-    if (index == 0.0) {
+    if (index == 0) {
       return start;
     }
 
@@ -94,15 +112,16 @@ public class MyLinkedList{
 
   public String toString() {
     String output = "";
-    if(size()==0){
+    if (size == 0){
       return "[]";
     }
+
     Node current = start;
-    while(current.getNext() != null){
-      output += current.getData() + ", ";
+    while (current.getNext() != null){
+      output = output + current.getData() + ", ";
       current = current.getNext();
     }
-    output += current.getData();
+    output = output + current.getData();
     return "[" + output + "]";
   }
 }
