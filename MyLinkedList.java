@@ -92,11 +92,10 @@ public class MyLinkedList{
     }
 
     String original = "";
-    if (index == size - 1) {
-      original = end.getData();
-      end = end.getPrev();
-      end.setPrev(null);
-      end.getPrev().setNext(null);
+    if (size() == 1) {
+      original = start.getData();
+      start = null;
+      end = null;
     }
 
     else if (index == 0) {
@@ -107,10 +106,12 @@ public class MyLinkedList{
       start = next_start;
     }
 
-    else if (size == 1) {
-      original = start.getData();
-      start = null;
-      end = null;
+    else if (index == size() - 1) {
+      original = end.getData();
+      Node end_value = end.getPrev();
+      end_value.setNext(null);
+      end.setPrev(null);
+      end = end_value;
     }
 
     else {
@@ -126,6 +127,14 @@ public class MyLinkedList{
     return original;
   }
 
+  public void extend(MyLinkedList other) {
+    end.setNext(other.start);
+    other.start.setPrev(end);
+    size = size + other.size();
+    other.start = null;
+    other.end = null;
+    other.size = 0;
+  }
 
   public String toString() {
     String output = "";
