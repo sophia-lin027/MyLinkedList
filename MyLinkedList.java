@@ -86,25 +86,46 @@ public class MyLinkedList{
     return original;
   }
 
-  private Node move(int index) {
+  public String remove(int index) {
     if (index < 0 || index >= size()) {
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
 
-    if (index == 0) {
-      return start;
+    String original = "";
+    if (index == size - 1) {
+      original = end.getData();
+      end = end.getPrev();
+      end.setPrev(null);
+      end.getPrev().setNext(null);
     }
 
-    if (index == size() - 1) {
-      return end;
+    else if (index == 0) {
+      Node next_start = start.getNext();
+      original = start.getData();
+      next_start.setPrev(null);
+      start.setNext(null);
+      start = next_start;
     }
 
-    Node current = start;
-    for (int i = 0; i < index; i++) {
-      current = current.getNext();
+    else if (size == 1) {
+      original = start.getData();
+      start = null;
+      end = null;
     }
-    return current;
+
+    else {
+      Node old_node = move(index);
+      original = old_node.getData();
+      old_node.getPrev().setNext(old_node.getNext());
+      old_node.getNext().setPrev(old_node.getPrev());
+      old_node.setNext(null);
+      old_node.setPrev(null);
+    }
+
+    size--;
+    return original;
   }
+
 
   public String toString() {
     String output = "";
@@ -137,4 +158,25 @@ public class MyLinkedList{
     output = output + current.getData();
     return "[" + output + "]";
   }
+
+  private Node move(int index) {
+    if (index < 0 || index >= size()) {
+      throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
+    }
+
+    if (index == 0) {
+      return start;
+    }
+
+    if (index == size() - 1) {
+      return end;
+    }
+
+    Node current = start;
+    for (int i = 0; i < index; i++) {
+      current = current.getNext();
+    }
+    return current;
+  }
+
 }
