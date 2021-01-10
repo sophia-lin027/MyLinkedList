@@ -79,14 +79,11 @@ public class MyLinkedList{
       throw new IndexOutOfBoundsException("The index " + index + " cannot be negative or greater than the size");
     }
 
-    Node current = this.start;
-    int counter = 0;
+    Node new_node = move(index);
+    String original = new_node.getData();
+    new_node.setData(value);
 
-    while (counter < index) {
-      current = current.getNext();
-      counter++;
-    }
-    return current.setData(value);
+    return original;
   }
 
   private Node move(int index) {
@@ -120,6 +117,23 @@ public class MyLinkedList{
       output = output + current.getData() + ", ";
       current = current.getNext();
     }
+
+    output = output + current.getData();
+    return "[" + output + "]";
+  }
+
+  public String toStringReversed() {
+    String output = "";
+    if (size == 0){
+      return "[]";
+    }
+
+    Node current = end;
+    while (current.getPrev() != null) {
+      output = output + current.getData() + ", ";
+      current = current.getPrev();
+    }
+
     output = output + current.getData();
     return "[" + output + "]";
   }
