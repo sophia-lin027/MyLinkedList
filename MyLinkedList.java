@@ -14,15 +14,19 @@ public class MyLinkedList{
 
   public boolean add(String value) {
     Node new_node = new Node(value);
+
     if (size == 0) {
-      this.start = new_node;
-      this.end = new_node;
+      start = new_node;
+      end = new_node;
+    }
+
+    else {
+      end.setNext(new_node);
+      new_node.setPrev(end);
+      end = new_node;
     }
 
     size++;
-    new_node.setPrev(this.end);
-    (this.end).setNext(new_node);
-    this.end = new_node;
     return true;
   }
 
